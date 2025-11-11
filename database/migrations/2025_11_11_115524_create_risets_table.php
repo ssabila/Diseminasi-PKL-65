@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('financial_metrics', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->date('date');
-            $table->string('category');
-            $table->decimal('amount', 12, 2);
-            $table->string('type')->nullable();
-            $table->string('description')->nullable();
+        Schema::create('risets', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
+
     }
 
     /**
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('financial_metrics');
+        Schema::dropIfExists('risets');
     }
 };
