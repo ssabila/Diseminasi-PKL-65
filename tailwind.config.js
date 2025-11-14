@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import forms from '@tailwindcss/forms'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
     darkMode: 'class',
@@ -11,7 +12,12 @@ export default {
         './components/**/*.{html,js}'
     ],
     theme: {
-        extend: {}
+        extend: {
+            fontFamily: {
+                yodnam: ['Yodnam', ...defaultTheme.fontFamily.sans],
+                rakkas: ['Rakkas', ...defaultTheme.fontFamily.sans]
+            }
+        }
     },
     plugins: [forms]
 }

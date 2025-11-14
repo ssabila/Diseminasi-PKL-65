@@ -2,8 +2,8 @@
 import { Head, Link, usePage } from '@inertiajs/vue3'
 import { useForm } from '@inertiajs/vue3'
 import Auth from '../../Layouts/Auth.vue'
-import FormInput from '../../Components/FormInput.vue'
-import FormCheckbox from '../../Components/FormCheckbox.vue'
+import FormInput from '../../Components/FormInput.vue' 
+import FormCheckbox from '../../Components/FormCheckbox.vue' 
 import Modal from '../../Components/Modal.vue'
 import { ref } from 'vue'
 
@@ -14,8 +14,8 @@ defineOptions({
 const { settings: { passwordlessLogin = true } = {} } = usePage().props
 
 const form = useForm({
-    email: 'ota@example.com',
-    password: 'password',
+    email: '',
+    password: '',
     remember: false
 })
 
@@ -24,7 +24,7 @@ const magicLinkForm = useForm({
     email: ''
 })
 
-const submit = () => {
+const handleLogin = () => {
     form.post(route('login'))
 }
 
@@ -40,149 +40,62 @@ const sendMagicLink = () => {
 </script>
 
 <template>
-    <Head title="Login" />
+  <Head title="Login" />
 
-    <main class="max-w-[384px] mx-auto px-8" role="main">
-        <h1 class="main-heading text-center">Login</h1>
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-200 to-orange-300">
+    <div class="w-[380px] bg-white rounded-2xl shadow-lg overflow-hidden">
+      <div class="bg-gradient-to-r from-amber-800 to-orange-700 text-white text-center p-6">
+        <div class="w-16 h-16 mx-auto bg-white text-amber-800 rounded-full flex items-center justify-center text-lg font-semibold">
+          LOGO
+        </div>
+        <h1 class="font-rakkas mt-3 text-2xl tracking-wide">PKL 65</h1>
+        <p class="text-sm mt-1">Politeknik Statistika STIS<br />D.I. Yogyakarta</p>
+      </div>
 
-        <form
-            class="mt-6 container-border p-5 space-y-6"
-            aria-labelledby="login-form"
-            @submit.prevent="submit">
-            <FormInput
-                id="email"
-                v-model="form.email"
-                label="Email address"
-                name="email"
-                type="email"
-                required
-                autocomplete="email"
-                :error="form.errors.email" />
-            <section class="space-y-4">
-                <FormInput
-                    id="password"
-                    v-model="form.password"
-                    label="Password"
-                    name="password"
-                    type="password"
-                    required
-                    autocomplete="current-password"
-                    :error="form.errors.password" />
-                <div class="flex items-center justify-between">
-                    <FormCheckbox
-                        id="remember-me"
-                        v-model="form.remember"
-                        label="Remember me"
-                        name="remember" />
-                    <Link
-                        :href="route('password.request')"
-                        class="text-sm link hover:underline"
-                        aria-label="Reset forgotten password">
-                        Forgot password?
-                    </Link>
-                </div>
-            </section>
+      <div class="p-6">
+        <form @submit.prevent="handleLogin">
+          
+          <div v-if="form.errors.email || form.errors.password" class="mb-4 p-3 bg-red-100 text-red-700 text-sm rounded-lg">
+            {{ form.errors.email || form.errors.password }}
+          </div>
 
-            <button
-                type="submit"
-                :disabled="form.processing"
-                class="w-full btn-primary"
-                aria-busy="form.processing">
-                {{ form.processing ? 'Signing in...' : 'Sign in' }}
-            </button>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-600 mb-1">Email</label>
+            <input
+              v-model="form.email"
+              type="text"
+              placeholder="Masukkan username atau NIM"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
 
-            <template v-if="passwordlessLogin">
-                <div role="separator" aria-label="or separator" class="relative">
-                    <hr class="border-t border-[var(--color-border)]" />
-                    <span
-                        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-2 bg-[var(--color-surface)] text-[var(--color-text-muted)]">
-                        OR
-                    </span>
-                </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-600 mb-1">Password</label>
+            <input
+              v-model="form.password"
+              type="password"
+              placeholder="Masukkan password"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+          </div>
 
-                <button
-                    type="button"
-                    class="w-full flex items-center justify-center gap-2 btn-secondary text-sm dark:hover:bg-gray-800 dark:text-gray-200 dark:hover:text-purple-400 transition-colors cursor-pointer"
-                    aria-label="Open magic link login modal"
-                    @click="showMagicLinkModal = true">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        aria-hidden="true">
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <span>Login with magic link</span>
-                </button>
-                <p class="text-xs text-center text-[var(--color-text-muted)]" role="note">
-                    We'll send a secure login link to your email
-                </p>
-            </template>
+          <div class="flex justify-between items-center mb-6">
+            <label class="flex items-center text-sm text-gray-600">
+              <input v-model="form.remember" type="checkbox" class="mr-2 rounded border-gray-300" />
+              Ingat saya
+            </label>
+            <Link :href="route('password.request')" class="text-sm text-orange-600 hover:underline">Lupa password?</Link>
+          </div>
+
+          <button
+            type="submit"
+            :disabled="form.processing"
+            class="w-full py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-semibold transition-all disabled:opacity-50"
+          >
+            Login sebagai Administrator
+          </button>
         </form>
-
-        <p class="mt-6 text-center text-sm text-[var(--color-text-muted)]">
-            Don't have an account?
-            <Link
-                :href="route('register')"
-                class="link hover:underline ml-1"
-                aria-label="Go to registration page">
-                Sign up
-            </Link>
-        </p>
-    </main>
-
-    <Modal
-        v-if="passwordlessLogin"
-        :show="showMagicLinkModal"
-        size="sm"
-        aria-labelledby="modal-title"
-        @close="showMagicLinkModal = false">
-        <template #title>
-            <h2 id="modal-title">Login with Magic Link</h2>
-        </template>
-
-        <template #default>
-            <form
-                class="space-y-4"
-                aria-labelledby="magic-link-form"
-                @submit.prevent="sendMagicLink">
-                <FormInput
-                    id="magic-link-email"
-                    v-model="magicLinkForm.email"
-                    label="Email address"
-                    name="magic-link-email"
-                    type="email"
-                    required
-                    :error="magicLinkForm.errors.email"
-                    autocomplete="email" />
-                <p class="text-sm text-[var(--color-text-muted)]">
-                    We'll send a secure login link to your email address.
-                </p>
-            </form>
-        </template>
-
-        <template #footer>
-            <button
-                type="button"
-                class="cursor-pointer mr-2 text-[var(--color-text)]"
-                aria-label="Close modal"
-                @click="showMagicLinkModal = false">
-                Cancel
-            </button>
-            <button
-                :disabled="magicLinkForm.processing"
-                type="button"
-                class="btn-primary"
-                aria-busy="magicLinkForm.processing"
-                @click="sendMagicLink">
-                {{ magicLinkForm.processing ? 'Sending...' : 'Send magic link' }}
-            </button>
-        </template>
-    </Modal>
+      </div>
+    </div>
+  </div>
 </template>
