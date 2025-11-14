@@ -1,7 +1,7 @@
 <script setup>
 // Pastikan kamu sudah rename '1.svg' menjadi 'pattern-batik.svg'
 const batikPatternUrl = '/images/assets/pattern-batik.svg'; 
-const logoUrl = '/images/assets/LOGO-PKL_REV8.jpg'; //
+const logoUrl = '/images/assets/LOGO-PKL_REV8.png'; //
 </script>
 
 <template>
