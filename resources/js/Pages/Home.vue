@@ -1,84 +1,167 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-// Asumsi kamu menggunakan layout ini. Sesuaikan jika perlu.
 import PKL65Layout from '@/Layouts/PKL65Layout.vue'; 
 
-// Memberitahu Inertia untuk membungkus halaman ini dengan layout
+// Memberitahu Inertia untuk membungkus halaman ini dengan layout PKL65Layout
 defineOptions({ layout: PKL65Layout });
+
+// (Nanti tim bisa tambahin props di sini kalo butuh data dari controller)
+// defineProps({
+//   risets: Array,
+//   ...
+// });
 </script>
 
 <template>
   <Head title="Beranda" />
 
-  <main>
-    <section class="relative overflow-hidden bg-white">
-
-      <img 
-        src="/images/assets/pattern-batik.svg" 
-        alt="Pola batik" 
-        class="absolute inset-0 w-full h-full object-cover opacity-10 z-10"
-        aria-hidden="true"
-      >
+  <main class="font-sans bg-pkl-light-yellow"> <section id="hero" class="relative overflow-hidden">
+      <div class="container mx-auto px-6 py-24 pt-32 relative z-10">
+        <div class="max-w-3xl">
+          <h1 class="font-sub text-6xl lg:text-7xl font-bold text-pkl-dark-blue">
+            Praktik Kerja Lapangan
+          </h1>
+          <p class="mt-4 font-sub text-2xl text-gray-800">
+            Politeknik Statistika STIS T.A. 2025/2026
+          </p>
+          <p class="mt-6 text-lg text-gray-700 max-w-2xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praktik Kerja
+            Lapangan Mahasiswa Tingkat III Politeknik Statistika STIS...
+          </p>
+          <Link 
+            href="#latar-belakang" 
+            class="mt-8 inline-block bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-green-800 transition-colors"
+          >
+            Lihat Selengkapnya
+          </Link>
+        </div>
+      </div>
       
-      <img 
-        src="/images/assets/lanskap-gunung-abstrak.svg" 
-        alt="Lanskap gunung abstrak"
-        class="absolute inset-0 w-full h-full object-cover z-0"
-        aria-hidden="true"
-      >
+      </section>
 
-      <img 
-        src="/images/assets/landmark-tugu-yogya.svg" 
-        alt="Landmark Tugu Yogya"
-        class="absolute bottom-0 left-0 h-1/2 md:h-2/3 lg:h-3/4 w-auto z-10"
-        aria-hidden="true"
-      >
-      
+    <section id="latar-belakang" class="bg-pkl-base-orange py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="font-sub text-4xl lg:text-5xl text-white text-center">
+          Latar Belakang
+        </h2>
+        
+        <p class="mt-6 text-lg text-orange-100 max-w-4xl mx-auto text-center">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+        </p>
+        
+        <div class="mt-12 bg-white rounded-lg shadow-xl p-8 max-w-3xl mx-auto">
+          <h3 class="font-sub text-2xl text-pkl-dark-blue">Fenomena Gig Economy</h3>
+          <ul class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+            <li class="flex items-center text-gray-700">
+              <svg class="h-5 w-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="..."></path></svg>
+              Lorem ipsum dolor sit amet...
+            </li>
+            <li class="flex items-center text-gray-700">
+              <svg class="h-5 w-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="..."></path></svg>
+              Sed do eiusmod tempor...
+            </li>
+            </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tujuan" class="bg-pkl-light-yellow py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="font-sub text-4xl lg:text-5xl text-pkl-dark-blue text-center">
+          Tujuan Penelitian
+        </h2>
+        
+        <div class="mt-12 max-w-4xl mx-auto">
+          <p class="text-center text-gray-700">(Orang 2 isi 6 poin tujuan di sini)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="riset" class="bg-pkl-base-orange py-20 relative overflow-hidden">
       <img 
         src="/images/assets/landmark-prambanan-siluet.svg" 
-        alt="Landmark Siluet Prambanan"
-        class="absolute bottom-0 right-0 h-1/2 md:h-2/3 lg:h-3/4 w-auto z-10"
-        aria-hidden="true"
+        alt="Siluet Prambanan"
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-auto z-0 opacity-20"
       >
-
-      <div class="relative min-h-[70vh] md:min-h-[80vh] flex items-center z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-2xl lg:max-w-3xl">
-            
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900">
-              Diseminasi Hasil Kegiatan PKL 65
-            </h1>
-            
-            <p class="mt-6 text-lg sm:text-xl text-gray-700">
-              {Ganti teks ini} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla vel
-              ultrices, nisl nunc aliquet nunc, nec tincidunt nisl nunc euismod.
-            </p>
-            
-            <div class="mt-10">
-              <Link 
-                href="#" 
-                class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-              >
-                Selengkapnya
-                <svg class="ml-3 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </Link>
-            </div>
+      
+      <div class="container mx-auto px-6 relative z-10">
+        <h2 class="font-sub text-4xl lg:text-5xl text-white text-center">
+          Riset
+        </h2>
+        
+        <div class="mt-12 grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 class="font-sub text-2xl text-pkl-base-orange">Riset 1</h3>
+            <p class="mt-4 text-gray-600">Lorem ipsum dolor sit amet...</p>
+            <button class="mt-6 bg-gray-200 text-gray-800 font-semibold py-2 px-5 rounded-lg">
+              Lihat Hasil
+            </button>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 class="font-sub text-2xl text-pkl-base-orange">Riset 2</h3>
+            <p class="mt-4 text-gray-600">Lorem ipsum dolor sit amet...</p>
+            <button class="mt-6 bg-gray-200 text-gray-800 font-semibold py-2 px-5 rounded-lg">
+              Lihat Hasil
+            </button>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 class="font-sub text-2xl text-pkl-base-orange">Riset 5</h3>
+            <p class="mt-4 text-gray-600">Lorem ipsum dolor sit amet...</p>
+            <button class="mt-6 bg-gray-200 text-gray-800 font-semibold py-2 px-5 rounded-lg">
+              Lihat Hasil
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-extrabold text-gray-900 text-center">
-          Bagian Konten Lainnya
+    <section id="cakupan" class="bg-pkl-light-yellow py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="font-sub text-4xl lg:text-5xl text-pkl-dark-blue text-center">
+          Cakupan Penelitian
         </h2>
-        <div class="mt-10 text-center text-gray-500">
-          ...
+        
+        <div class="mt-12 max-w-4xl mx-auto">
+          <p class="text-center text-gray-700">(Orang 3 isi 4 poin cakupan di sini)</p>
         </div>
       </div>
     </section>
+
+    <section id="metode-sampel" class="bg-pkl-base-orange py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="font-sub text-4xl lg:text-5xl text-white text-center">
+          Metode Penarikan Sampel
+        </h2>
+        
+        <div class="mt-12 max-w-2xl mx-auto">
+          <p class="text-center text-orange-100">(Orang 3 isi 4 step vertikal di sini)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="metode-data" class="bg-pkl-light-yellow py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="font-sub text-4xl lg:text-5xl text-pkl-dark-blue text-center">
+          Metode Pengumpulan Data
+        </h2>
+        
+        <div class="mt-12 max-w-4xl mx-auto">
+          <p class="text-center text-gray-700">(Orang 3 isi "Wawancara" & 5 step "Alur" di sini)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="hasil" class="bg-pkl-base-orange py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="font-sub text-4xl lg:text-5xl text-white text-center">
+          Hasil Penelitian
+        </h2>
+        
+        <div class="mt-12 max-w-5xl mx-auto">
+          <p class="text-center text-orange-100">(Orang 3 isi 3 kolom hasil & kesimpulan di sini)</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 </template>
