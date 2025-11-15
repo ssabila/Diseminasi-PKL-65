@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-import forms from '@tailwindcss/forms';
+import forms from '@tailwindcss/forms'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
     darkMode: 'class',
     content: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
-        './resources/**/*.vue', // Ini yang penting
+        './resources/**/*.vue',
         './pages/**/*.{html,js}',
         './components/**/*.{html,js}',
     ],
@@ -26,14 +27,10 @@ export default {
                 },
             },
             fontFamily: {
-                // Kita daftarkan font-nya di sini
-                // Pastikan nama dalam tanda kutip SAMA PERSIS dengan 
-                // nama 'font-family' yang kita definisikan di app.css
                 sans: ['"TT Bells"', 'sans-serif'], 
                 headline: ['Rakkas', 'serif'],
                 sub: ['Yodnam', 'sans-serif'],
             },
-            // --- SELESAI KUSTOMISASI ---
         },
     },
     plugins: [forms],

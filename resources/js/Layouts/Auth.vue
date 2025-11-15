@@ -12,21 +12,21 @@ const hasCustomBranding = computed(() => personalisation.appLogo)
 
 <template>
     <div class="min-h-screen flex flex-col">
-        <main class="flex-grow bg-[var(--color-bg)] py-4">
-            <header class="flex justify-center items-center">
+        <main class="flex-grow bg-[var(--color-bg)]">
+            <!-- <header class="flex justify-center items-center">
                 <div class="w-12 h-12 flex items-center justify-center">
                     <Logo
                         class="py-1 max-w-full max-h-full"
                         :class="{ 'mb-1': !hasCustomBranding }" />
                 </div>
-            </header>
+            </header> -->
             <FlashMessage />
-            <article class="mt-2">
+            <article>
                 <slot></slot>
             </article>
         </main>
 
-        <footer class="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+        <!-- <footer class="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
             <section
                 class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 sm:px-6 md:flex-row md:items-center md:justify-between">
                 <nav class="text-center md:order-2">
@@ -46,6 +46,6 @@ const hasCustomBranding = computed(() => personalisation.appLogo)
                     {{ personalisation.copyright_text || '© 2024 All rights reserved.' }}
                 </p>
             </section>
-        </footer>
+        </footer> -->
     </div>
 </template>
