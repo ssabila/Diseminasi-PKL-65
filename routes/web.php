@@ -3,7 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\ChartController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
@@ -36,6 +36,17 @@ Route::middleware(['web', 'auth', 'auth.session'])->group(function () {
 
     Route::middleware(['disable.account', 'force.password.change', 'password.expired'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('/dashboard/topics', [DashboardController::class, 'getTopics'])
+            ->name('dashboard.topics');
+        
+        Route::post('/dashboard/upload-map', [DashboardController::class, 'uploadMapData'])
+            ->name('dashboard.upload-map');
+        
+        Route::post('/dashboard/publish', [DashboardController::class, 'publish'])
+            ->name('dashboard.publish');
+
+        Route::get('/data', [DataController::class, 'index'])->name('data');
 
         // User Account Management Routes
         Route::prefix('user')->name('user.')->group(function () {
@@ -77,9 +88,6 @@ Route::middleware(['web', 'auth', 'auth.session'])->group(function () {
                 Route::delete('account/sessions/{sessionId}', 'destroySession')->name('session.destroy');
             });
         });
-
-        // Chart Routes
-        Route::get('charts', [ChartController::class, 'index'])->name('chart.index');
 
         // Protected Routes requiring 2FA
         Route::middleware([/* 'require.two.factor'*/])->group(function () {

@@ -244,7 +244,7 @@ onUnmounted(() => {
                     isSidebarOpen ? 'md:ml-64' : 'md:ml-0'
                 ]">
                 <FlashMessage />
-                <article class="py-4 sm:py-6 lg:py-8">
+                <article class="lg:py-8">
                     <slot />
                 </article>
             </main>
