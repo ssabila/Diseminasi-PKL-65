@@ -104,6 +104,20 @@
     --error-color-rgb: 239, 68, 68;
 }
 
+@layer utilities {
+    .bg-auth {
+        background-image: url('../images/background-pkl.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .font-rakkas{
+        font-family: 'Rakkas';
+    }
+}
+
+
 /* Base color variables for light/dark themes */
 :root {
     --color-bg: #ffffff;
