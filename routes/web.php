@@ -27,6 +27,8 @@ use App\Http\Controllers\DiseminasiController;
 
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/hasil-riset', [PageController::class, 'hasilRiset'])->name('hasil-riset');
+Route::get('/dokumen', [PageController::class, 'dokumen'])->name('dokumen');
 
 // Authenticated Routes
 Route::middleware(['web', 'auth', 'auth.session'])->group(function () {

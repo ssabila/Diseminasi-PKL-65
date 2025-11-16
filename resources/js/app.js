@@ -7,6 +7,7 @@ import '../css/app.css'
 import { initializeTheme } from './utils/themeInit'
 import InstantSearch from 'vue-instantsearch/vue3/es'
 
+
 initializeTheme()
 
 import Default from './Layouts/Default.vue'
