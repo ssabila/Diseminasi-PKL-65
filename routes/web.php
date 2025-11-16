@@ -3,7 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\ChartController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
@@ -23,7 +23,6 @@ use App\Http\Controllers\AdminLoginHistoryController;
 use App\Http\Controllers\AdminPermissionRoleController;
 use App\Http\Controllers\ForcePasswordChangeController;
 use App\Http\Controllers\AdminPersonalisationController;
-use App\Http\Controllers\DiseminasiController;
 
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -37,6 +36,17 @@ Route::middleware(['web', 'auth', 'auth.session'])->group(function () {
 
     Route::middleware(['disable.account', 'force.password.change', 'password.expired'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('/dashboard/topics', [DashboardController::class, 'getTopics'])
+            ->name('dashboard.topics');
+        
+        Route::post('/dashboard/upload-map', [DashboardController::class, 'uploadMapData'])
+            ->name('dashboard.upload-map');
+        
+        Route::post('/dashboard/publish', [DashboardController::class, 'publish'])
+            ->name('dashboard.publish');
+
+        Route::get('/data', [DataController::class, 'index'])->name('data');
 
         // User Account Management Routes
         Route::prefix('user')->name('user.')->group(function () {
@@ -78,48 +88,6 @@ Route::middleware(['web', 'auth', 'auth.session'])->group(function () {
                 Route::delete('account/sessions/{sessionId}', 'destroySession')->name('session.destroy');
             });
         });
-
-        // Chart Routes
-        Route::get('charts', [ChartController::class, 'index'])->name('chart.index');
-
-        Route::get('/diseminasi', [DiseminasiController::class, 'index'])
-            ->name('diseminasi.index');
-        
-        // Get topics for selected riset
-        Route::get('/diseminasi/topics', [DiseminasiController::class, 'getTopics'])
-            ->name('diseminasi.topics');
-        
-        // Store new visualization
-        Route::post('/diseminasi', [DiseminasiController::class, 'store'])
-            ->name('diseminasi.store');
-        
-        // Preview visualization
-        Route::post('/diseminasi/preview', [DiseminasiController::class, 'preview'])
-            ->name('diseminasi.preview');
-        
-        // List all visualizations
-        Route::get('/diseminasi/list', [DiseminasiController::class, 'list'])
-            ->name('diseminasi.list');
-        
-        // Edit visualization
-        Route::get('/diseminasi/{id}/edit', [DiseminasiController::class, 'edit'])
-            ->name('diseminasi.edit');
-        
-        // Update visualization
-        Route::put('/diseminasi/{id}', [DiseminasiController::class, 'update'])
-            ->name('diseminasi.update');
-        
-        // Delete visualization
-        Route::delete('/diseminasi/{id}', [DiseminasiController::class, 'destroy'])
-            ->name('diseminasi.destroy');
-        
-        // Toggle publish status
-        Route::patch('/diseminasi/{id}/toggle-publish', [DiseminasiController::class, 'togglePublish'])
-            ->name('diseminasi.toggle-publish');
-        
-        // Reorder visualizations
-        Route::post('/diseminasi/reorder', [DiseminasiController::class, 'reorder'])
-            ->name('diseminasi.reorder');
 
         // Protected Routes requiring 2FA
         Route::middleware([/* 'require.two.factor'*/])->group(function () {

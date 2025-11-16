@@ -46,7 +46,7 @@ const sendMagicLink = () => {
     <div class="w-[380px] bg-white rounded-2xl shadow-lg overflow-hidden">
       <div class="bg-[#EF874B] text-[#FDFADD] text-center p-6">
         <div class="w-16 h-16 mx-auto bg-white text-amber-800 rounded-full flex items-center justify-center text-lg font-semibold">
-          <img src="/images/LOGO-PKL.svg" class="w-full h-full" alt="Logo PKL 65">
+          <img src="/images/assets/LOGO-PKL_REV8.png" class="w-full h-full" alt="Logo PKL 65">
         </div>
         <h1 class="font-rakkas mt-3 text-2xl tracking-wide">PKL 65</h1>
         <p class="text-sm mt-1">Politeknik Statistika STIS<br />D.I. Yogyakarta</p>
